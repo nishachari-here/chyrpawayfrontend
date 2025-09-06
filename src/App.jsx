@@ -72,7 +72,7 @@ function SignupPage({ setUser, darkMode }) {
               e.preventDefault();
               setError("");
               try {
-                const res = await fetch("http://localhost:8000/signup", {
+                const res = await fetch("https://chyrpaway.onrender.com/signup", {
                   method: "POST",
                   headers: { "Content-Type": "application/json" },
                   body: JSON.stringify({ username, email, password }),
@@ -194,7 +194,7 @@ function LoginPage({ setUser, darkMode }) {
               e.preventDefault();
               setError("");
               try {
-                const res = await fetch("http://localhost:8000/login", {
+                const res = await fetch("https://chyrpaway.onrender.com/login", {
                   method: "POST",
                   headers: { "Content-Type": "application/json" },
                   body: JSON.stringify({ email, password }),
@@ -325,7 +325,7 @@ function CreateBlogPage({ user, darkMode }) {
     }
 
     try {
-      const res = await axios.post("http://localhost:8000/posts", formData, {
+      const res = await axios.post("https://chyrpaway.onrender.com/posts", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -571,7 +571,7 @@ function ProfilePage({ user, setUser, darkMode }) {
     }
     const fetchPosts = async () => {
       try {
-        const res = await fetch(`http://localhost:8000/users/${user.localId}/posts`);
+        const res = await fetch(`https://chyrpaway.onrender.com/users/${user.localId}/posts`);
         if (!res.ok) throw new Error("Failed to fetch posts");
         const data = await res.json();
         setPosts(data.posts || []);
@@ -886,7 +886,7 @@ function BlogDetailPage({ user, darkMode }) {
   useEffect(() => {
     const fetchBlog = async () => {
       try {
-        const res = await fetch(`http://localhost:8000/posts/${id}`);
+        const res = await fetch(`https://chyrpaway.onrender.com/posts/${id}`);
         const data = await res.json();
         setBlog({
           title: data.title || "",
@@ -913,7 +913,7 @@ function BlogDetailPage({ user, darkMode }) {
       return;
     }
     try {
-      const res = await fetch(`http://localhost:8000/posts/${id}/like`, {
+      const res = await fetch(`https://chyrpaway.onrender.com/posts/${id}/like`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ user_id: user.localId })
@@ -932,7 +932,7 @@ function BlogDetailPage({ user, darkMode }) {
       return;
     }
     try {
-      const res = await fetch(`http://localhost:8000/posts/${id}/comment`, {
+      const res = await fetch(`https://chyrpaway.onrender.com/posts/${id}/comment`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ user_id: user.localId, text: commentText })
@@ -1053,7 +1053,7 @@ function BlogHome({ sidebarOpen, setSidebarOpen, user, darkMode, toggleDarkMode 
 
   const fetchBlogs = async () => {
     try {
-      const res = await fetch("http://localhost:8000/posts");
+      const res = await fetch("https://chyrpaway.onrender.com/posts");
       const data = await res.json();
       setBlogs(data);
     } catch (err) {
@@ -1072,7 +1072,7 @@ function BlogHome({ sidebarOpen, setSidebarOpen, user, darkMode, toggleDarkMode 
       return;
     }
     try {
-      const res = await fetch(`http://localhost:8000/posts/${postId}/like`, {
+      const res = await fetch(`https://chyrpaway.onrender.com/posts/${postId}/like`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ user_id: user.localId })
@@ -1099,7 +1099,7 @@ function BlogHome({ sidebarOpen, setSidebarOpen, user, darkMode, toggleDarkMode 
     }
 
     try {
-      const res = await fetch(`http://localhost:8000/posts/${postId}/comment`, {
+      const res = await fetch(`https://chyrpaway.onrender.com/posts/${postId}/comment`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ user_id: user.localId, text: text })
